@@ -3,34 +3,42 @@
 
 // Dependencies
 var express = require("express");
-var handlebars = require("express-handlebars");
+var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
-var bodyparser = require("body-parser");
+var bodyParser = require("body-parser");
 var cheerio = require("request");
-var mongojs = require("mongojs");
+
 
 // Initialize Express
 var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static("./public"));
+
+mongoose.connect("mongodb://localhost/dataFromScraper");
+
+
+/* Setup express-handlebars */
+app.engine("handlebars" , exphbs({ defaultLayout: "main" }));
+app.set("view engine" , "handlebars");
+// IMPORTING & SERVICE SETUP
+
+// ROUTES / CONTROLLERS
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
+// ROUTES / CONTROLLERS
+
+
+
+
 
 // Database configuration
 // Save the URL of our database as well as the name of our collection
-var databaseUrl = "dataFromScraper";
-var collections = ["scraped"];
-
-// Use mongojs to hook the database to the db variable
-var db = mongojs(databaseUrl, collections);
 
 // This makes sure that any errors are logged if mongodb runs into an issue
 db.on("error", function(error) {
   console.log("Database Error:", error);
 });
-
-// Root: Displays a simple "Hello World" message (no mongo required)
-app.get("/", function(req, res) {
-  res.send("Hello world");
-});
-
-
 
 
 // Set the app to listen on port 3000
