@@ -1,12 +1,13 @@
-// See near the bottom of this file for your TODO assignments.
-// Good luck!
+//Vincent DeStefano
 
 // Dependencies
 var express = require("express");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-var cheerio = require("request");
+var cheerio = require("cheerio");
+var request = require("request");
+var db = require("./models");
 
 
 // Initialize Express
@@ -29,16 +30,8 @@ require("./routes/html-routes.js")(app);
 // ROUTES / CONTROLLERS
 
 
-
-
-
 // Database configuration
 // Save the URL of our database as well as the name of our collection
-
-// This makes sure that any errors are logged if mongodb runs into an issue
-db.on("error", function(error) {
-  console.log("Database Error:", error);
-});
 
 
 // Set the app to listen on port 3000

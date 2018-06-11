@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 
+mongoose.connect("mongodb://localhost/dataFromScraper");
+
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
@@ -9,7 +11,11 @@ var SiteSchema = new Schema({
   // `name` must be unique and of type String
   name: {
     type: String,
-    unique: true
+  },
+
+
+  title: {
+    type: String,
   },
   // `notes` is an array that stores ObjectIds
   // The ref property links these ObjectIds to the Note model
