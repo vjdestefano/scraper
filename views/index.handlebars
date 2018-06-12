@@ -1,21 +1,23 @@
 
+ {{#each article}} 
+  <div class="card">
+   
+    {{!-- {{#each contentName}} --}}
+    <div class="card-body">
+      <h4 class="card-title">
+
+        <a href={{title}}>Click here to visit</a>
+      </h4>
+      <p class="card-text">
+        {{name}}
+      </p>
+      <a href={{title}} class="btn btn-primary">Go to Site</a>
+    </div>
+    {{notes}}
+    
+     {{!-- {{/each}} --}}
+  </div>
+   {{/each}} 
 
 
 
-
-
-<div class="container">
-
-
-<li>
-{{#each article}}
-{{#each contentName}}
-<li>{{name}} ::: <a href={{title}}>Click here to visit</a></li>
-{{notes}}
-{{/each}}
-{{/each}}
-</li>
-
-
-
-</div>

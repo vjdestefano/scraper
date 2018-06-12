@@ -29,16 +29,16 @@ app.get("/db", function(req, res){
      
       
       // // If all Users are successfully found, send them back to the client
-      pageData = [{
-        contentName: dbSite,
-        // contentTitle: testTitle,
-        // contentNote: testNote
-      }]
+      // pageData = [{
+      //   contentName: dbSite,
+      //   // contentTitle: testTitle,
+      //   // contentNote: testNote
+      // }]
 
       console.log(pageData)
       // res.json(dbSite)
 
-      res.render("index",{article:pageData});
+      res.render("index",{article:dbSite});
     })
     .catch(function(err) {
       // If an error occurs, send the error back to the client
