@@ -16,7 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
-mongoose.connect("mongodb://localhost/dataFromScraper");
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dataFromSraper";
+
+var port = process.env.MONGODB_URI || 3000;
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 
 /* Setup express-handlebars */
@@ -35,6 +42,6 @@ require("./routes/html-routes.js")(app);
 
 
 // Set the app to listen on port 3000
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("App running on port 3000!");
 });
